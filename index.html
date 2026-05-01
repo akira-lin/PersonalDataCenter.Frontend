@@ -331,7 +331,7 @@
     <div class="container">
         <header>
             <h1>📊 个人数据中心</h1>
-            <p>Personal Data Center - .NET P6 架构师实战项目</p>
+            <p>Personal Data Center - .NET P6 架构师实战项�?/p>
         </header>
 
         <div class="tabs">
@@ -349,7 +349,7 @@
                 </div>
                 <div class="stat-card">
                     <div class="number" id="category-count">0</div>
-                    <div class="label">分类数</div>
+                    <div class="label">分类�?/div>
                 </div>
                 <div class="stat-card">
                     <div class="number" id="today-count">0</div>
@@ -379,7 +379,7 @@
                         <input type="url" id="data-source">
                     </div>
                     <div class="form-group">
-                        <label>标签（逗号分隔）</label>
+                        <label>标签（逗号分隔�?/label>
                         <input type="text" id="data-tags">
                     </div>
                     <button type="submit" class="btn btn-primary" id="submit-btn">添加数据</button>
@@ -392,7 +392,7 @@
                 <div class="search-bar">
                     <input type="text" id="search-input" placeholder="搜索标题、描述或标签...">
                     <select id="filter-category">
-                        <option value="">所有分类</option>
+                        <option value="">所有分�?/option>
                     </select>
                     <button class="btn btn-primary" onclick="loadData(1)">搜索</button>
                 </div>
@@ -430,13 +430,13 @@
                         <label>目标URL *</label>
                         <input type="url" id="crawl-url" required placeholder="https://example.com">
                     </div>
-                    <button type="submit" class="btn btn-primary">创建并执行任务</button>
+                    <button type="submit" class="btn btn-primary">创建并执行任�?/button>
                 </form>
             </div>
 
             <div class="card">
-                <h2>快速提取</h2>
-                <p style="margin-bottom: 15px; color: #666;">直接从一个URL提取数据（不保存任务）</p>
+                <h2>快速提�?/h2>
+                <p style="margin-bottom: 15px; color: #666;">直接从一个URL提取数据（不保存任务�?/p>
                 <form id="extract-form">
                     <div class="form-group">
                         <label>URL *</label>
@@ -444,7 +444,7 @@
                     </div>
                     <div class="form-group">
                         <label>分类 *</label>
-                        <input type="text" id="extract-category" required placeholder="例如：技术文章">
+                        <input type="text" id="extract-category" required placeholder="例如：技术文�?>
                     </div>
                     <button type="submit" class="btn btn-primary">提取数据</button>
                 </form>
@@ -459,7 +459,7 @@
                                 <th>ID</th>
                                 <th>任务名称</th>
                                 <th>URL</th>
-                                <th>状态</th>
+                                <th>状�?/th>
                                 <th>采集数量</th>
                                 <th>创建时间</th>
                                 <th>操作</th>
@@ -477,17 +477,17 @@
                 <h2>导出数据</h2>
                 <p style="margin-bottom: 15px; color: #666;">将数据导出为 Excel 文件，方便备份和分析</p>
                 <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                    <button class="btn btn-primary" onclick="exportAll()">导出所有数据</button>
+                    <button class="btn btn-primary" onclick="exportAll()">导出所有数�?/button>
                     <select id="export-category" style="padding: 12px; border: 2px solid #e1e1e1; border-radius: 8px;">
-                        <option value="">所有分类</option>
+                        <option value="">所有分�?/option>
                     </select>
-                    <button class="btn btn-secondary" onclick="exportByCategory()">按分类导出</button>
+                    <button class="btn btn-secondary" onclick="exportByCategory()">按分类导�?/button>
                 </div>
             </div>
 
             <div class="card">
                 <h2>导入数据</h2>
-                <p style="margin-bottom: 15px; color: #666;">从 Excel 文件导入数据（支持 .xlsx 和 .xls）</p>
+                <p style="margin-bottom: 15px; color: #666;">�?Excel 文件导入数据（支�?.xlsx �?.xls�?/p>
                 <form id="import-form">
                     <div class="form-group">
                         <label>选择文件 *</label>
@@ -495,7 +495,7 @@
                     </div>
                     <div class="form-group">
                         <label>默认分类</label>
-                        <input type="text" id="import-category" placeholder="如果Excel中没有分类，使用此值">
+                        <input type="text" id="import-category" placeholder="如果Excel中没有分类，使用此�?>
                     </div>
                     <button type="submit" class="btn btn-primary">导入数据</button>
                 </form>
@@ -511,13 +511,12 @@
 
     <script>
         // API 配置
-        const API_BASE = 'http://localhost:5000/api';
+        const API_BASE = 'https://api.myhr.dpdns.org:2443/api';
 
-        // 状态
-        let currentPage = 1;
+        // 状�?        let currentPage = 1;
         let currentTab = 'data';
 
-        // ========== 初始化 ==========
+        // ========== 初始�?==========
         document.addEventListener('DOMContentLoaded', () => {
             initTabs();
             initForms();
@@ -545,7 +544,7 @@
             document.getElementById(`tab-${tab}`).classList.remove('hidden');
         }
 
-        // ========== 表单初始化 ==========
+        // ========== 表单初始�?==========
         function initForms() {
             document.getElementById('data-form').addEventListener('submit', handleDataSubmit);
             document.getElementById('crawl-form').addEventListener('submit', handleCrawlSubmit);
@@ -564,7 +563,7 @@
             const category = document.getElementById('filter-category').value;
 
             try {
-                let url = `${API_BASE}/DataItems?page=${page}&pageSize=10`;
+                let url = `${API_BASE}/DataItem?page=${page}&pageSize=10`;
                 if (search) url += `&search=${encodeURIComponent(search)}`;
                 if (category) url += `&category=${encodeURIComponent(category)}`;
 
@@ -610,7 +609,7 @@
             const totalPages = Math.ceil(total / pageSize);
             const container = document.getElementById('pagination');
             
-            let html = `<button ${page === 1 ? 'disabled' : ''} onclick="loadData(${page - 1})">上一页</button>`;
+            let html = `<button ${page === 1 ? 'disabled' : ''} onclick="loadData(${page - 1})">上一�?/button>`;
             
             for (let i = 1; i <= totalPages; i++) {
                 if (i === 1 || i === totalPages || (i >= page - 2 && i <= page + 2)) {
@@ -620,7 +619,7 @@
                 }
             }
             
-            html += `<button ${page === totalPages ? 'disabled' : ''} onclick="loadData(${page + 1})">下一页</button>`;
+            html += `<button ${page === totalPages ? 'disabled' : ''} onclick="loadData(${page + 1})">下一�?/button>`;
             
             container.innerHTML = html;
         }
@@ -629,11 +628,10 @@
             document.getElementById('total-count').textContent = total;
             
             try {
-                const res = await fetch(`${API_BASE}/DataItems?page=1&pageSize=1`);
+                const res = await fetch(`${API_BASE}/DataItem?page=1&pageSize=1`);
                 const data = await res.json();
                 
-                // 获取分类数（从所有数据中统计）
-                const allRes = await fetch(`${API_BASE}/DataItems?pageSize=1000`);
+                // 获取分类数（从所有数据中统计�?                const allRes = await fetch(`${API_BASE}/DataItem?pageSize=1000`);
                 const allData = await allRes.json();
                 const categories = new Set(allData.items.map(i => i.category));
                 document.getElementById('category-count').textContent = categories.size;
@@ -662,7 +660,7 @@
             };
 
             try {
-                const url = id ? `${API_BASE}/DataItems/${id}` : `${API_BASE}/DataItems`;
+                const url = id ? `${API_BASE}/DataItem/${id}` : `${API_BASE}/DataItem`;
                 const method = id ? 'PUT' : 'POST';
                 
                 const res = await fetch(url, {
@@ -684,7 +682,7 @@
 
         async function editItem(id) {
             try {
-                const res = await fetch(`${API_BASE}/DataItems/${id}`);
+                const res = await fetch(`${API_BASE}/DataItem/${id}`);
                 const item = await res.json();
 
                 document.getElementById('edit-id').value = item.id;
@@ -715,10 +713,10 @@
         }
 
         async function deleteItem(id) {
-            if (!confirm('确定要删除这条数据吗？')) return;
+            if (!confirm('确定要删除这条数据吗�?)) return;
 
             try {
-                const res = await fetch(`${API_BASE}/DataItems/${id}`, { method: 'DELETE' });
+                const res = await fetch(`${API_BASE}/DataItem/${id}`, { method: 'DELETE' });
                 if (!res.ok) throw new Error('删除失败');
                 
                 showToast('删除成功', 'success');
@@ -767,8 +765,7 @@
             };
 
             try {
-                // 创建并执行任务
-                const res = await fetch(`${API_BASE}/CrawlTasks`, {
+                // 创建并执行任�?                const res = await fetch(`${API_BASE}/CrawlTasks`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(dto)
@@ -776,7 +773,7 @@
 
                 const task = await res.json();
                 
-                showToast('任务已创建，开始执行...', 'success');
+                showToast('任务已创建，开始执�?..', 'success');
                 
                 // 执行任务
                 await fetch(`${API_BASE}/CrawlTasks/${task.id}/run`, { method: 'POST' });
@@ -798,7 +795,7 @@
             };
 
             try {
-                showToast('正在提取数据，请稍候...', 'success');
+                showToast('正在提取数据，请稍�?..', 'success');
                 
                 const res = await fetch(`${API_BASE}/CrawlTasks/extract`, {
                     method: 'POST',
@@ -817,18 +814,18 @@
                         sourceUrl: i.sourceUrl
                     }));
 
-                    await fetch(`${API_BASE}/DataItems/bulk`, {
+                    await fetch(`${API_BASE}/DataItem/bulk`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(dtos)
                     });
                     
-                    showToast(`成功提取并保存 ${items.length} 条数据`, 'success');
+                    showToast(`成功提取并保�?${items.length} 条数据`, 'success');
                     document.getElementById('extract-form').reset();
                     loadData(1);
                     switchTab('data');
                 } else {
-                    showToast('未能从该页面提取到数据', 'error');
+                    showToast('未能从该页面提取到数�?, 'error');
                 }
             } catch (err) {
                 showToast('提取失败: ' + err.message, 'error');
@@ -837,7 +834,7 @@
 
         async function runTask(id) {
             try {
-                showToast('任务执行中...', 'success');
+                showToast('任务执行�?..', 'success');
                 await fetch(`${API_BASE}/CrawlTasks/${id}/run`, { method: 'POST' });
                 loadCrawlTasks();
                 loadData(1);
@@ -849,14 +846,14 @@
         // ========== Excel ==========
         async function loadCategories() {
             try {
-                const res = await fetch(`${API_BASE}/DataItems?pageSize=1000`);
+                const res = await fetch(`${API_BASE}/DataItem?pageSize=1000`);
                 const data = await res.json();
                 
                 const categories = [...new Set(data.items.map(i => i.category))];
                 
                 ['filter-category', 'export-category'].forEach(id => {
                     const select = document.getElementById(id);
-                    select.innerHTML = '<option value="">所有分类</option>' + 
+                    select.innerHTML = '<option value="">所有分�?/option>' + 
                         categories.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
                 });
 
@@ -882,7 +879,7 @@
             e.preventDefault();
             
             const file = document.getElementById('import-file').files[0];
-            const category = document.getElementById('import-category').value || '未分类';
+            const category = document.getElementById('import-category').value || '未分�?;
 
             if (!file) {
                 showToast('请选择文件', 'error');
@@ -894,7 +891,7 @@
             formData.append('category', category);
 
             try {
-                showToast('导入中，请稍候...', 'success');
+                showToast('导入中，请稍�?..', 'success');
                 
                 const res = await fetch(`${API_BASE}/Excel/import?category=${encodeURIComponent(category)}`, {
                     method: 'POST',
